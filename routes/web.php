@@ -13,6 +13,13 @@
 |
 */
 
-$router->get('/',['middleware' => 'auth', function () use ($router) {
+$router->group(['middleware' => 'auth'], function () use ($router) {
+
+$router->get('/', function () use ($router) {
     return $router->app->version();
-}]);
+});
+
+$router->post('/login', 'LoginController@loginWithPost');
+$router->get('/login', 'LoginController@LoginWithGet');
+});
+
